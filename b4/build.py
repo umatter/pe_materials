@@ -96,15 +96,18 @@ read_label <- function(reply, json = FALSE) {
 }"""),
     md("""Labelling 100 reviews one by one takes a while, so `label_all()` sends several requests at
 the same time (`mc.cores`). A failed call becomes `NA` (a missing label) instead of stopping the loop;
-the progress line says why labels are missing, and a run where every call fails stops with the error."""),
+the progress line says why labels are missing, and a run where every call fails stops with the error.
+An empty reply is asked once more before it counts as missing."""),
     code("""cores <- 8  # parallel requests; set to 1 if the cell hangs
 
 label_all <- function(texts, model, prompt = c("A", "B"), temperature = 0) {
   prompt <- match.arg(prompt)
   # One review: a label, or NA and the reason
   one <- function(text) tryCatch({
-    reply <- if (prompt == "A") or_chat(prompt_a(text), model = model, temperature = temperature)
-             else or_chat(prompt_b(text), model = model, system = codebook, temperature = temperature)
+    ask <- function() if (prompt == "A") or_chat(prompt_a(text), model = model, temperature = temperature)
+                      else or_chat(prompt_b(text), model = model, system = codebook, temperature = temperature)
+    reply <- ask()
+    if (!is.character(reply)) reply <- ask()  # an empty reply happens under load: ask once more
     if (!is.character(reply) || length(reply) != 1) {
       list(label = NA_character_, why = "reply without text")
     } else {
@@ -146,16 +149,21 @@ for (i in seq_len(nrow(runs))) {
   labels[[key]] <- label_all(reviews$text, runs$model[i], runs$prompt[i])
 }"""),
 
-    md("## 5. How well does each run agree with the human labels?"),
+    md("""## 5. How well does each run agree with the human labels?
+
+`accuracy` and `kappa` use only the reviews a run labelled; `correct` is the share of all 100
+reviews it labelled correctly, so a missing label counts as wrong. A run that skips the hard
+reviews can look best on `kappa`: always read `missing` next to it."""),
     code("""results <- data.frame(
   model = runs$model,
   prompt = runs$prompt,
   missing = sapply(labels, function(x) sum(is.na(x))),
   accuracy = sapply(labels, function(x) round(mean(x == reviews$label, na.rm = TRUE), 3)),
   kappa = sapply(labels, function(x) round(cohen_kappa(x, reviews$label), 3)),
+  correct = sapply(labels, function(x) round(mean(!is.na(x) & x == reviews$label), 3)),
   row.names = NULL
 )
-results[order(-results$kappa), ]"""),
+results[order(-results$correct), ]"""),
     code("""library(ggplot2)
 ggplot(results, aes(x = kappa, y = model, fill = prompt)) +
   geom_col(position = "dodge") +
@@ -179,7 +187,7 @@ pairs"""),
 
 Numbers tell you how often the model is wrong, not why. Read the items where the best run
 disagrees with the human label. Is the model wrong, or the gold label?"""),
-    code("""best <- paste(results$model, results$prompt)[which.max(results$kappa)]
+    code("""best <- paste(results$model, results$prompt)[which.max(results$correct)]
 wrong <- which(labels[[best]] != reviews$label | is.na(labels[[best]]))
 cat("Best run:", best, "-", length(wrong), "disagreements\\n\\n")
 for (i in head(wrong, 5)) {
