@@ -36,6 +36,7 @@ cd /files/pee_2026/b3         # own laptop: cd pe_materials/b3
 git config --global user.name >/dev/null || git config --global user.name "Student"
 git config --global user.email >/dev/null || git config --global user.email "student@example.com"
 git init -q && git add -A && git commit -qm "start"
+export OPENROUTER_API_KEY="$(cat /secrets/OPENROUTER_API_KEY)"   # Nuvolos: the course key
 pi --model openrouter/anthropic/claude-haiku-5.5
 ```
 

@@ -23,14 +23,16 @@ Now the folder is a git repository, so you can see later exactly what pi changed
 On your own laptop: `git clone https://github.com/umatter/pe_materials.git` and `cd pe_materials/b2`
 instead (a clone is already a git repository).
 
-## 2. Check pi and the key
+## 2. The key and pi
+
+On Nuvolos, load the course key into this terminal (once per terminal; on your own laptop
+skip this line, see `SETUP.md`), then check:
 
 ```bash
+export OPENROUTER_API_KEY="$(cat /secrets/OPENROUTER_API_KEY)"
 pi --version
 [ -n "$OPENROUTER_API_KEY" ] && echo TRUE || echo FALSE
 ```
-
-If it prints `FALSE`: `export OPENROUTER_API_KEY="$(cat /secrets/OPENROUTER_API_KEY)"`.
 
 ## 3. Give pi the task
 

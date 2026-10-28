@@ -38,14 +38,14 @@ Open the RStudio app of the course space, then:
 
 1. **R:** `source("R/or_chat.R")` (or the path given in the exercise) and call `or_chat("Hello")`.
    The key is read automatically.
-2. **Terminal:** open a *new* terminal (Terminal tab → New Terminal) and check:
+2. **Terminal:** open a *new* terminal (Terminal tab → New Terminal), load the course key into
+   it (once per terminal), and check:
 
    ```bash
+   export OPENROUTER_API_KEY="$(cat /secrets/OPENROUTER_API_KEY)"
    pi --version
    [ -n "$OPENROUTER_API_KEY" ] && echo TRUE || echo FALSE
    ```
-
-   If it prints `FALSE`: `export OPENROUTER_API_KEY="$(cat /secrets/OPENROUTER_API_KEY)"`.
 
    If `pi` is not found, install it into your home folder (the pi.dev installer does not work
    on Nuvolos, which has no Node.js; this downloads pi's ready-made program instead):
