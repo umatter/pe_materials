@@ -1,0 +1,7 @@
+__pycache__/
+.Rproj.user/
+.Rhistory
+.RData
+.env
+.Renviron
+Rplots.pdf
