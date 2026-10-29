@@ -5,12 +5,24 @@ Data analysis with AI and R. Student materials for Day 2 of *Prompt Engineering 
 
 **Start here: [SETUP.md](SETUP.md)** (OpenRouter key, Colab, Nuvolos, your own machine, pi).
 
+## Open in Google Colab
+
+You can run each notebook directly in your browser using Google Colab. You need a Google account (free)
+to use Colab. Colab opens a notebook from GitHub with the warning "This notebook was not authored by
+Google": click **Run anyway**. The notebooks open in Colab's R runtime.
+
+- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/umatter/pe_materials/blob/main/b1/01_first_call.ipynb) **Block 1:** your first API calls from R (`or_chat()`, roles, models, temperature, JSON); needs the course key
+- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/umatter/pe_materials/blob/main/b2/02_data_handling_colab.ipynb) **Block 2:** cleaning a World Bank download step by step with Gemini, with self-checks; no key needed
+- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/umatter/pe_materials/blob/main/b4/04_can_you_trust_it.ipynb) **Block 4:** 100 reviews, 3 models, 2 prompts: agreement with human labels (accuracy, kappa, missing labels); needs the course key, about 3 minutes and 3 US cents per run
+
+## The blocks
+
 | Block | Where | Material |
 |---|---|---|
-| 1 From chat to code | Colab + Gemini | [`b1/01_first_call.ipynb`](b1/01_first_call.ipynb) · [open in Colab](https://colab.research.google.com/github/umatter/pe_materials/blob/main/b1/01_first_call.ipynb) |
-| 2 AI-assisted data handling | Colab + Gemini, then RStudio + pi | [`b2/02_data_handling_colab.ipynb`](b2/02_data_handling_colab.ipynb) · [open in Colab](https://colab.research.google.com/github/umatter/pe_materials/blob/main/b2/02_data_handling_colab.ipynb); pi half: [`b2/pi/README.md`](b2/pi/README.md) |
+| 1 From chat to code | Colab + Gemini | [`b1/01_first_call.ipynb`](b1/01_first_call.ipynb) |
+| 2 AI-assisted data handling | Colab + Gemini, then RStudio + pi | [`b2/02_data_handling_colab.ipynb`](b2/02_data_handling_colab.ipynb); pi half: [`b2/pi/README.md`](b2/pi/README.md) |
 | 3 LLMs inside the pipeline | RStudio + pi | [`b3/README.md`](b3/README.md), exercise [`b3/TASK_pi.md`](b3/TASK_pi.md) |
-| 4 Can you trust it? | Colab | [`b4/04_can_you_trust_it.ipynb`](b4/04_can_you_trust_it.ipynb) · [open in Colab](https://colab.research.google.com/github/umatter/pe_materials/blob/main/b4/04_can_you_trust_it.ipynb) |
+| 4 Can you trust it? | Colab | [`b4/04_can_you_trust_it.ipynb`](b4/04_can_you_trust_it.ipynb) |
 
 Blocks 5 and 6 have slides only.
 
