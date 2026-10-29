@@ -58,6 +58,10 @@ cells = [
 
 This notebook runs in Colab's **R** runtime (Runtime → Change runtime type → R).
 
+**To keep your work, click *Copy to Drive* in the toolbar first.** Opened from the course link, the
+notebook is not saved: your changes and outputs are lost when you close the tab. The copy goes to
+*Colab Notebooks* in your Google Drive.
+
 Today the AI is **Gemini in Colab**, your coding assistant: it suggests code, you decide what runs.
 This notebook makes no calls to a language model from R, so you need no key.
 

@@ -12,6 +12,10 @@ cells = [
 
 This notebook runs in Colab's **R** runtime (Runtime → Change runtime type → R).
 
+**To keep your work, click *Copy to Drive* in the toolbar first.** Opened from the course link, the
+notebook is not saved: your changes and outputs are lost when you close the tab. The copy goes to
+*Colab Notebooks* in your Google Drive.
+
 Two kinds of AI appear in this notebook:
 - **The model you call from R** through the OpenRouter API (`or_chat()`): part of your analysis.
 - **Gemini in Colab**, which helps you write and fix the code: your coding assistant.

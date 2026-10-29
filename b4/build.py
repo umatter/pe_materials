@@ -13,6 +13,10 @@ cells = [
 
 This notebook runs in Colab's **R** runtime (Runtime → Change runtime type → R).
 
+**To keep your work, click *Copy to Drive* in the toolbar first.** Opened from the course link, the
+notebook is not saved: your changes and outputs are lost when you close the tab. The copy goes to
+*Colab Notebooks* in your Google Drive.
+
 You let three models label 100 movie reviews as positive or negative, with two prompts, and
 compare their labels with the human ones. That is the core of the technical appendix your group
 writes for its project: **does the prompt work, with which model, and how do you know?**
